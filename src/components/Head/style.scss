@@ -1,0 +1,16 @@
+
+.header .logo {
+  width: 120px;
+  height: 31px;
+  margin: 16px 28px 16px 0;
+  float: left;
+  line-height: 0;
+}
+.logo img{
+  width: 120px;
+}
+.header .menu{
+  display: flex;
+  justify-content: flex-end;
+  //background: #f0f2f5;
+}
