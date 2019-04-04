@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Layout, Menu, Icon,} from 'antd';
+import {Layout, Menu} from 'antd';
 import {Link} from "react-router-dom";
 
 
@@ -9,41 +9,78 @@ const {Sider} = Layout;
 class ListNav extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            navList: [
+                {
+                    name: "房屋数量分析",
+                    subNav: [
+                        {
+                            name: "房屋区域数量对比",
+                            link: "/"
+                        },
+                        {
+                            name: "房屋沿地铁数量对比",
+                            link: "/"
+                        }
+                    ]
+                },
+                {
+                    name: "房屋价格分析",
+                    subNav: [
+                        {
+                            name: "房屋区域价格对比",
+                            link: "/"
+                        },
+                        {
+                            name: "房屋沿地铁价格对比",
+                            link: "/"
+                        }
+                    ]
+                },
+                {
+                    name: "房屋户型分析",
+                    subNav: [
+                        {
+                            name: "区域内户型数量",
+                            link: "/"
+                        },
+                    ]
+                },
+            ]
+        }
+    }
+
+    componentDidMount() {
     }
 
     render() {
         return (
-            <Sider width={200} style={{background: '#fff'}}>
+            <Sider width={250} style={{background: '#fff'}}>
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
                     style={{height: '100%', borderRight: 0}}
-                    // theme="dark"
                 >
-                    <SubMenu key="sub1" title={<span><Icon type="user"/><span>subnav 1</span></span>}>
-                        {[1, 2, 3, 4].map((item) => (
-                            <Menu.Item key={item}>{"option" + item}</Menu.Item>
-                        ))}
-                    </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="laptop"/><span>subnav 2</span></span>}>
-                        <Menu.Item key="5"><Link to="/housedes">option5</Link></Menu.Item>
-                        <Menu.Item key="6">option6</Menu.Item>
-                        <Menu.Item key="7">option7</Menu.Item>
-                        <Menu.Item key="8">option8</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub3" title={<span><Icon type="notification"/><span>subnav 3</span></span>}>
-                        <Menu.Item key="9">option9</Menu.Item>
-                        <Menu.Item key="10">option10</Menu.Item>
-                        <Menu.Item key="11">option11</Menu.Item>
-                        <Menu.Item key="12">option12</Menu.Item>
-                    </SubMenu>
+                    {
+                        // 一级目录
+                        this.state.navList.map((firstItem, firstIndex) => (
+                            <SubMenu key={`first-nav-${firstIndex}`} title={<span>{firstItem.name}</span>}>
+                                {firstItem.subNav.map((secondItem, secondIndex) => (
+                                    //二级目录
+
+                                    <Menu.Item key={`third-nav-${secondIndex}${firstIndex}`}>
+                                        <Link to={secondItem.link}/>{secondItem.name}
+                                    </Menu.Item>
+
+                                ))}
+                            </SubMenu>
+                        ))
+                    }
                 </Menu>
             </Sider>
-
         )
     }
+
 }
 
 export default ListNav

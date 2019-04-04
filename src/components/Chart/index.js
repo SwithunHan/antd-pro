@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {getCompanyOfArea} from "../../api";
+// import {getCompanyOfArea} from "../../api";
 import echarts from "echarts";
 
 class Chart extends Component {
@@ -31,21 +31,21 @@ class Chart extends Component {
         }
     }
 
-    componentDidMount() {
-        getCompanyOfArea()
-            .then((data) => {
-                this.setState({
-                    chartData: data
-                })
-            })
-            .then(() => {
-                this.renderChart()
-            })
-    }
+    // componentDidMount() {
+    //     getCompanyOfArea()
+    //         .then((data) => {
+    //             this.setState({
+    //                 chartData: data
+    //             })
+    //         })
+    //         .then(() => {
+    //             this.renderChart()
+    //         })
+    // }
 
-    renderChart() {
-        let chart = echarts.init()
-    }
+    // renderChart() {
+    //     let chart = echarts.init()
+    // }
 
 
 

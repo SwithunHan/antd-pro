@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import {Layout} from "antd";
+import "./style.scss"
 import Head from "components/Head";
+import Content from "../Content";
+import Foot from "components/Foot";
 
 class Index extends Component {
     constructor(props) {
@@ -10,8 +13,10 @@ class Index extends Component {
 
     render() {
         return (
-            <Layout>
+            <Layout id="wrapper">
                 <Head/>
+                <Content/>
+                <Foot/>
             </Layout>
         )
     }
