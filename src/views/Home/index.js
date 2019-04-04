@@ -3,6 +3,7 @@ import {inject, observer} from "mobx-react"
 import "./style.scss"
 import {Layout} from 'antd';
 import Chart from "components/Chart"
+import ListNav from "components/ListNav";
 
 const {Content} = Layout;
 
@@ -16,6 +17,8 @@ class Home extends Component {
 
     render() {
         return (
+            <Layout>
+                <ListNav/>
                 <Layout style={{padding: '24px 24px 0'}}>
                     <Content style={{
                         background: '#ffffff', padding: 24, margin: 0, minHeight: 280,
@@ -24,6 +27,7 @@ class Home extends Component {
                         hello world!!
                     </Content>
                 </Layout>
+            </Layout>
         )
     }
 }

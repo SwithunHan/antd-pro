@@ -11,7 +11,7 @@ class Content extends Component {
     render() {
         return (
             <Switch>
-                <Route exact component={Home}/>
+                <Route exact path="/home" component={Home}/>
             </Switch>
         )
     }
