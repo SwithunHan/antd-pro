@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import {getCompanyOfArea} from "../../api";
-import echarts from "echarts";
+// import echarts from "echarts";
 
 class Chart extends Component {
     constructor(props) {
