@@ -24,7 +24,6 @@ class Home extends Component {
                         background: '#ffffff', padding: 24, margin: 0, minHeight: 280,
                     }}>
                         <Chart/>
-                        hello world!!
                     </Content>
                 </Layout>
             </Layout>
