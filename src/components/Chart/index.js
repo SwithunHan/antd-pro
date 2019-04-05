@@ -51,7 +51,9 @@ class Chart extends Component {
 
     render() {
         return (
-            <div className="Chart"/>
+            <div className="Chart">
+                hello world!
+            </div>
         )
     }
 }
