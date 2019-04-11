@@ -1,3 +1,30 @@
-#wrapper{
-  min-height: 100vh;
+.Index{
+  padding: 100px 20px;
+  text-align: center;
+  h1{
+    font-size: 26px;
+  }
+  .search{
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    .list{
+      background: #ffffff;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 40px;
+      z-index: 100;
+    }
+  }
+  .communityList{
+    width: 90%;
+    margin: 50px auto 0;
+    padding: 20px;
+    background: #ffffff;
+    h2{
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
 }
