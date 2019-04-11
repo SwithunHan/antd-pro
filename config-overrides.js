@@ -13,7 +13,8 @@ module.exports = override(
         utils: path.resolve(__dirname, './src/utils'),
         api: path.resolve(__dirname, './src/api'),
         stores: path.resolve(__dirname, './src/stores'),
-        static: path.resolve(__dirname, './src/statics')
+        static: path.resolve(__dirname, './src/statics'),
+        historys: path.resolve(__dirname, './src/history'),
     }),
     addBabelPlugin(
         ["@babel/plugin-proposal-decorators", {"legacy": true}],
