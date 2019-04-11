@@ -1,52 +1,75 @@
 import React, {Component} from 'react'
-// import {getCompanyOfArea} from "../../api";
-// import echarts from "echarts";
+import {getDistribution} from "../../api";
+import echarts from "echarts";
+import "./style.scss"
+
 
 class Chart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: [
-                // {
-                //     name: "海淀区",
-                //     num: 12
-                // },
-                // {
-                //     name: "东城区",
-                //     num: 5
-                // },
-                // {
-                //     name: "西城区",
-                //     num: 6
-                // },
-                // {
-                //     name: "大兴区",
-                //     num: 6
-                // },
-                // {
-                //     name: "昌平区",
-                //     num: 10
-                // },
-            ]
+            chartData: [],
+            option: {
+                title: {
+                    text: '行政区内小区数量'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['小区数量']
+                },
+                xAxis: {
+                    data: []
+                },
+                yAxis: {},
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: []
+                }]
+            }
         }
     }
 
-    // componentDidMount() {
-    //     getCompanyOfArea()
-    //         .then((data) => {
-    //             this.setState({
-    //                 chartData: data
-    //             })
-    //         })
-    //         .then(() => {
-    //             this.renderChart()
-    //         })
-    // }
+    componentDidMount() {
+        getDistribution()
+            .then((data) => {
+                let xAxis = [];
+                let xseries = [];
+                for(let info of data){
+                    xAxis.push(info['district'])
+                    xseries.push(info['num'])
+                }
+                this.setState({
+                    option: {
+                        title: {
+                            text: '行政区内小区数量'
+                        },
+                        tooltip: {},
+                        legend: {
+                            data: ['小区数量']
+                        },
+                        xAxis: {
+                            data: xAxis
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '小区数量',
+                            type: 'bar',
+                            data: xseries
+                        }]
+                    }
+                });
+                console.log(data)
+            })
+            .then(() => {
+                this.renderChart()
+            })
+    }
 
-    // renderChart() {
-    //     let chart = echarts.init()
-    // }
-
+    renderChart() {
+        let chart = echarts.init(document.querySelector(".Chart"))
+        chart.setOption(this.state.option)
+    }
 
 
     render() {

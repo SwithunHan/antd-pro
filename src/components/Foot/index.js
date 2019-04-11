@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Layout} from 'antd';
-
+import "./style.scss"
 const {Footer} = Layout;
 
 class Foot extends Component {
@@ -11,7 +11,7 @@ class Foot extends Component {
 
     render() {
         return (
-            <Footer style={{textAlign: 'center'}}>
+            <Footer id="foot" style={{textAlign: 'center'}}>
                 Ant Design ©2018 Created by Ant UED
             </Footer>
         )
