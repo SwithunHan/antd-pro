@@ -1,27 +1,13 @@
 import React, {Component} from 'react'
-import {Layout, Input, List, Table} from "antd"
+import {Layout, Input, List} from "antd"
 import {history} from "historys"
 import "./style.scss"
 import {getComunity, getIndexHouse} from "../../api";
+import HouseTable from "../../components/HouseTable/HouseTable";
 
 const Search = Input.Search
 
-const columns = [
-    {title: "房子名称", dataIndex: "title"},
-    {title: "房子链接", dataIndex: "link", render: (name) => <a href={name}>{name}</a>,},
-    {title: "小区名称", dataIndex: "community"},
-    {title: "建成时间", dataIndex: "years"},
-    {title: "房屋类型", dataIndex: "housetype"},
-    {title: "房屋面积", dataIndex: "square"},
-    {title: "朝向", dataIndex: "direction"},
-    {title: "楼层", dataIndex: "floor"},
-    {title: "特点", dataIndex: "tag"},
-    {title: "总价/万", dataIndex: "totalPrice"},
-    {title: "每平米价格/万", dataIndex: "unitPrice"},
-    {title: "关注数", dataIndex: "followInfo"},
-    {title: "装饰类型", dataIndex: "decoration"},
-    {title: "房源状态", dataIndex: "houseState"},
-];
+
 
 
 class Index extends Component {
@@ -50,8 +36,8 @@ class Index extends Component {
             })
     }
 
-    searchCommunity = () => {
-        history.push("/home")
+    searchCommunity = (value) => {
+        history.push(`/community/${value}`)
     };
     //查询小区信息
     setSearch = (searchValue) => {
@@ -80,8 +66,8 @@ class Index extends Component {
                 <h1>leetcode链家房源分析</h1>
                 <Layout className="search">
                     <Search
-                        placeholder="小区"
-                        onSearch={this.searchCommunity}
+                        placeholder="小区名称"
+                        onSearch={value => this.searchCommunity(value)}
                         enterButton
                         size="large"
                         value={this.state.searchValue}
@@ -107,8 +93,7 @@ class Index extends Component {
                 </Layout>
                 <Layout className="communityList">
                     <h2>最新房源信息</h2>
-                    <Table columns={columns} dataSource={this.state.newHouseInfo} size="small"
-                           pagination={this.state.paginationOptions} bordered={true}/>
+                    <HouseTable newHouseInfo={this.state.newHouseInfo} paginationOptions={this.state.paginationOptions}/>
                 </Layout>
             </Layout>
         )
