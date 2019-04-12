@@ -35,7 +35,7 @@ class Chart extends Component {
             .then((data) => {
                 let xAxis = [];
                 let xseries = [];
-                for(let info of data){
+                for (let info of data) {
                     xAxis.push(info['district'])
                     xseries.push(info['num'])
                 }
@@ -64,6 +64,7 @@ class Chart extends Component {
             .then(() => {
                 this.renderChart()
             })
+        console.log(this)
     }
 
     renderChart() {

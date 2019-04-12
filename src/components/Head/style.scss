@@ -12,5 +12,8 @@
 .header .menu{
   display: flex;
   justify-content: flex-end;
-  //background: #f0f2f5;
+  span{
+    color: #ffffff;
+    margin-right: 5px;
+  }
 }

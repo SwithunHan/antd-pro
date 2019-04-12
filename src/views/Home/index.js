@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import "./style.scss"
 import {Layout} from 'antd';
-import Chart from "components/Chart"
+import ColumnChart from "components/ColumnChart"
 import ListNav from "components/ListNav";
 
 const {Content} = Layout;
@@ -23,7 +23,7 @@ class Home extends Component {
                     <Content style={{
                         background: '#ffffff', padding: 24, margin: 0, minHeight: 280,
                     }}>
-                        <Chart/>
+                        <ColumnChart/>
                     </Content>
                 </Layout>
             </Layout>

@@ -4,10 +4,9 @@ import {history} from "historys"
 import "./style.scss"
 import {getComunity, getIndexHouse} from "../../api";
 import HouseTable from "../../components/HouseTable/HouseTable";
+import {Link} from "react-router-dom";
 
 const Search = Input.Search
-
-
 
 
 class Index extends Component {
@@ -20,7 +19,7 @@ class Index extends Component {
             paginationOptions: {
                 pageSize: 5
             },
-            newHouseInfo: []
+            newHouseInfo: [],
         }
     }
 
@@ -63,7 +62,7 @@ class Index extends Component {
     render() {
         return (
             <Layout className="Index">
-                <h1>leetcode链家房源分析</h1>
+                <h1>leetcode链家房源分析<Link to={"/home"}>更多房源数据分析</Link></h1>
                 <Layout className="search">
                     <Search
                         placeholder="小区名称"
@@ -93,7 +92,8 @@ class Index extends Component {
                 </Layout>
                 <Layout className="communityList">
                     <h2>最新房源信息</h2>
-                    <HouseTable newHouseInfo={this.state.newHouseInfo} paginationOptions={this.state.paginationOptions}/>
+                    <HouseTable newHouseInfo={this.state.newHouseInfo}
+                                paginationOptions={this.state.paginationOptions}/>
                 </Layout>
             </Layout>
         )

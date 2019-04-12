@@ -58,7 +58,8 @@ class ListNav extends Component {
             <Sider width={250} style={{background: '#fff'}}>
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={['second-nav-00']}
+                    defaultOpenKeys={['first-nav-0']}
                     style={{height: '100%', borderRight: 0}}
                 >
                     {
@@ -68,7 +69,7 @@ class ListNav extends Component {
                                 {firstItem.subNav.map((secondItem, secondIndex) => (
                                     //二级目录
 
-                                    <Menu.Item key={`third-nav-${secondIndex}${firstIndex}`}>
+                                    <Menu.Item key={`second-nav-${firstIndex}${secondIndex}`}>
                                         <Link to={secondItem.link}/>{secondItem.name}
                                     </Menu.Item>
 
