@@ -48,7 +48,7 @@ class Index extends Component {
     //联想输入
     getSearchList = () => {
         if (this.state.searchValue.trim()) {
-            getComunity(`search=${this.state.searchValue}`)
+            getComunity(`title=${this.state.searchValue}`)
                 .then((data) => {
                     this.setState({
                         community: data.results

@@ -43,10 +43,18 @@ class CommunityInfo extends Component {
                         ? <Layout className="info">
                             <ul>
                                 {
-                                    columns.map((infoItem,index) => (
+                                    columns.map((infoItem, index) => (
                                         <li key={index}>
-                                            <span>{infoItem.title}</span>
-                                            <span>{this.props.community[infoItem.dataIndex]}</span>
+                                            <span>{infoItem.title}:</span>
+                                            <span>
+                                                {
+                                                    infoItem.dataIndex === "link" ?
+                                                        <a href={this.props.community[infoItem.dataIndex]}>链家地址</a>
+                                                        : this.props.community[infoItem.dataIndex]
+                                                            ? this.props.community[infoItem.dataIndex]
+                                                            : "暂无信息"
+                                                }
+                                                </span>
                                         </li>
                                     ))
                                 }

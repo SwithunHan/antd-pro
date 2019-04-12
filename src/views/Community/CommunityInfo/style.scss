@@ -1,6 +1,8 @@
 .CommunityInfo{
   flex-direction: row;
   padding: 10px 0;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
   .commmunityImg{
     flex: 1;
     height: 30vw;
@@ -21,12 +23,26 @@
     ul{
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
     }
     ul li{
-      width: 50%;
+      width: 40%;
       list-style: none;
-
+      //border-bottom: 1px solid black;
+      span:first-child{
+        font-weight: bold;
+      }
+      span{
+        display:block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+      }
     }
+
   }
 }

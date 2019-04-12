@@ -12,9 +12,6 @@ class Head extends Component {
         this.state = {}
     }
 
-    componentDidMount(){
-        console.log(this.props)
-    }
     render() {
         return (
             <Header className="header">

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import "./style.scss"
-import {getComunity,getHouse} from "api/index"
+import {getComunity, getHouse} from "api/index"
 import HouseTable from "components/HouseTable/HouseTable";
 import {Layout} from "antd";
 import CommunityInfo from "./CommunityInfo";
+
 class Community extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +13,7 @@ class Community extends Component {
             paginationOptions: {
                 pageSize: 5
             },
-            houseList:[]
+            houseList: []
         }
     }
 
@@ -20,19 +21,19 @@ class Community extends Component {
         getComunity(`search=${this.props.match.params.comName}`)
             .then((data) => {
                 this.setState({
-                    community:data.results[0]
+                    community: data.results[0]
                 })
             })
-            .catch(e=>{
+            .catch(e => {
                 console.log(e)
             })
         getHouse(`community=${this.props.match.params.comName}`)
-            .then((data)=>{
+            .then((data) => {
                 this.setState({
-                    houseList:data.results
+                    houseList: data.results
                 })
             })
-            .catch(e=>{
+            .catch(e => {
                 console.log(e)
             })
     }
@@ -40,7 +41,9 @@ class Community extends Component {
     render() {
         return (
             <Layout className="Community">
+                <h2>小区信息</h2>
                 <CommunityInfo community={this.state.community}/>
+                <h2>小区内房源信息</h2>
                 <HouseTable newHouseInfo={this.state.houseList} paginationOptions={this.state.paginationOptions}/>
             </Layout>
         )
