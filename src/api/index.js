@@ -4,7 +4,7 @@ import {get} from "./fetch"
 
 export async function getComunity(params) {
     try {
-        const res = await get(`/community?${params}`);
+        const res = await get(`/api/community?${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -13,7 +13,7 @@ export async function getComunity(params) {
 
 export async function getIndexHouse(params) {
     try {
-        const res = await get(`/houselist/?page=1`);
+        const res = await get(`/api/houselist/?page=1`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -22,7 +22,15 @@ export async function getIndexHouse(params) {
 
 export async function getDistribution(params) {
     try {
-        const res = await get(`/distribution`);
+        const res = await get(`/api/distribution`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
+export async function getHouse(params) {
+    try {
+        const res = await get(`/api/houselist/?${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
