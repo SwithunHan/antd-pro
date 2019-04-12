@@ -10,6 +10,7 @@ import {Layout} from "antd";
 import Foot from "components/Foot";
 import Head from "components/Head";
 import Home from "views/Home";
+import Community from "../views/Community";
 
 
 @inject("loginStore")
@@ -26,14 +27,16 @@ class RootRouter extends Component {
         return (
             <Router history={history}>
                 <Layout id="wrapper">
-                    <Head/>
+                    <Route component={Head}/>
                     <Switch>
                         <Route exact path="/" component={Index}/>
                         <Route path="/home" component={props => requireAuth(Home, props, this.props.loginStore.token)}/>
                         <Route path="/login" component={Login}/>
-                        <Route path="/housedes" component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
+                        <Route path="/community/:comName" component={Community}/>
+                        <Route path="/housedes"
+                               component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
                     </Switch>
-                    <Foot/>
+                    <Route component={Foot}/>
                 </Layout>
             </Router>
         );
