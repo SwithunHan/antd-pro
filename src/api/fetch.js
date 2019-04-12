@@ -16,15 +16,14 @@ export default function request(method, url, body) {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': ('Bearer ' + localStorage.getItem('token')) || '' // 从localStorage中获取access token
+            'Authorization': localStorage.getItem('token') ? ('JWT ' + localStorage.getItem('token')) : '' // 从localStorage中获取access token
         },
         body
     }).then((res) => {
         if (res.status === 401) {
             history.replace('/login');
             localStorage.removeItem("token");
-            localStorage.removeItem("islogin");
-            localStorage.removeItem("userinfo");
+            localStorage.removeItem("username");
             return Promise.reject('Unauthorized.');
         }
         return res;

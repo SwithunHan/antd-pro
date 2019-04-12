@@ -1,19 +1,18 @@
-import {observable, action, computed} from "mobx"
+import {observable, action} from "mobx"
 
 class loginStore {
-    @observable username = "hanxudong";
+    @observable username = "";
     @observable num = 0;
     @observable token = localStorage.getItem("token") || "";
+
     @action.bound setUsername(val) {
         this.username = val;
     }
 
-    @computed get total() {
-        return this.num + 5;
+    @action.bound setToken(val) {
+        this.token = val;
     }
-    set total(val){
-        this.num = val;
-    }
+
 
 }
 

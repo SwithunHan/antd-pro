@@ -28,14 +28,17 @@ class RootRouter extends Component {
             <Router history={history}>
                 <Layout id="wrapper">
                     <Route component={Head}/>
-                    <Switch>
-                        <Route exact path="/" component={Index}/>
-                        <Route path="/home" component={props => requireAuth(Home, props, this.props.loginStore.token)}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/community/:comName" component={Community}/>
-                        <Route path="/housedes"
-                               component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
-                    </Switch>
+                    <div className="content">
+                        <Switch>
+                            <Route exact path="/" component={Index}/>
+                            <Route path="/home" component={props => requireAuth(Home, props, this.props.loginStore.token)}/>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/registered" component={Login}/>
+                            <Route path="/community/:comName" component={Community}/>
+                            <Route path="/housedes"
+                                   component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
+                        </Switch>
+                    </div>
                     <Route component={Foot}/>
                 </Layout>
             </Router>

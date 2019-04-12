@@ -3,7 +3,7 @@ import React from "react";
 import {Redirect} from "react-router";
 
 function requireAuth(Layout, props, token) {
-    if (false) { // 未登录
+    if (token==="") { // 未登录
         return <Redirect to="/login"/>;
     } else {
         return <Layout {...props} />
