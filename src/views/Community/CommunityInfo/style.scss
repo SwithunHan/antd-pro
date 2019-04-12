@@ -1,0 +1,32 @@
+.CommunityInfo{
+  flex-direction: row;
+  padding: 10px 0;
+  .commmunityImg{
+    flex: 1;
+    height: 30vw;
+    justify-content: center;
+    align-items: center;
+    img{
+      height: 100%;
+    }
+  }
+  .info{
+    flex: 2;
+    &.not-info{
+      justify-content: center;
+      align-items: center;
+      font-size: 26px;
+      font-weight: bold;
+    }
+    ul{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    ul li{
+      width: 50%;
+      list-style: none;
+
+    }
+  }
+}
