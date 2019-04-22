@@ -26,9 +26,13 @@ class Index extends Component {
     componentDidMount() {
         getIndexHouse()
             .then((data) => {
-                this.setState({
-                    newHouseInfo: data.results
-                })
+                if (data) {
+                    this.setState({
+                        newHouseInfo: data.results
+                    })
+                }
+
+
             })
             .catch(function (e) {
                 console.log(e)
@@ -49,9 +53,11 @@ class Index extends Component {
         if (this.state.searchValue.trim()) {
             getComunity(`title=${this.state.searchValue}`)
                 .then((data) => {
-                    this.setState({
-                        community: data.results
-                    })
+                    if (data) {
+                        this.setState({
+                            community: data.results
+                        })
+                    }
                 })
                 .catch(e => {
                     console.log(e)
@@ -62,7 +68,7 @@ class Index extends Component {
     render() {
         return (
             <Layout className="Index">
-                <h1>leetcode链家房源分析<Link to={"/home"}>更多房源数据分析</Link></h1>
+                <h1>leetcode链家房源分析<Link to={"/content"}>更多房源数据分析</Link></h1>
                 <Layout className="search">
                     <Search
                         placeholder="小区名称"

@@ -44,7 +44,6 @@ class Head extends Component {
 
                 }
 
-
             </Header>
         )
     }

@@ -15,8 +15,8 @@ class ListNav extends Component {
                     name: "房屋数量分析",
                     subNav: [
                         {
-                            name: "房屋行政区数量对比",
-                            link: "/"
+                            name: "房屋数量对比",
+                            link: "/home"
                         },
                         {
                             name: "房屋沿地铁数量对比",
@@ -42,7 +42,7 @@ class ListNav extends Component {
                     subNav: [
                         {
                             name: "行政区内户型数量",
-                            link: "/"
+                            link: "/housetype"
                         },
                     ]
                 },

@@ -9,8 +9,8 @@ import requireAuth from "utils/requireAuth";
 import {Layout} from "antd";
 import Foot from "components/Foot";
 import Head from "components/Head";
-import Home from "views/Home";
 import Community from "../views/Community";
+import Content from "../views/Content";
 
 
 @inject("loginStore")
@@ -31,7 +31,7 @@ class RootRouter extends Component {
                     <div className="content">
                         <Switch>
                             <Route exact path="/" component={Index}/>
-                            <Route path="/home" component={props => requireAuth(Home, props, this.props.loginStore.token)}/>
+                            <Route path="/content" component={props => requireAuth(Content, props, true)}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/registered" component={Login}/>
                             <Route path="/community/:comName" component={Community}/>
