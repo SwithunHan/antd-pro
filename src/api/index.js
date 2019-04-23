@@ -1,6 +1,6 @@
 import {get, post} from "./fetch"
 
-const host = "47.106.140.222:8000";
+const host = "";
 
 export async function getComunity(params) {
     try {
