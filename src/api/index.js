@@ -1,10 +1,10 @@
 import {get, post} from "./fetch"
 
-// const host = "127.0.0.1:8000";
+const host = "47.106.140.222:8000";
 
 export async function getComunity(params) {
     try {
-        const res = await get(`/api/community?${params}`);
+        const res = await get(`${host}/api/community?${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -13,7 +13,7 @@ export async function getComunity(params) {
 
 export async function getIndexHouse(params) {
     try {
-        const res = await get(`/api/houselist/?page=1`);
+        const res = await get(`${host}/api/houselist/?page=1`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -22,7 +22,7 @@ export async function getIndexHouse(params) {
 
 export async function getDistribution(params) {
     try {
-        const res = await get(`/api/distribution`);
+        const res = await get(`${host}/api/distribution`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -31,7 +31,7 @@ export async function getDistribution(params) {
 
 export async function getHouse(params) {
     try {
-        const res = await get(`/api/houselist/?${params}`);
+        const res = await get(`${host}/api/houselist/?${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -40,7 +40,7 @@ export async function getHouse(params) {
 
 export async function login(params) {
     try {
-        const res = await post(`/api/login/`, params);
+        const res = await post(`${host}/api/login/`, params);
         return await res.json();
     } catch (e) {
         console.log(e);
@@ -49,7 +49,7 @@ export async function login(params) {
 
 export async function registered(params) {
     try {
-        const res = await post(`/api/registered/`, params);
+        const res = await post(`${host}/api/registered/`, params);
         return await res.json();
     } catch (e) {
         console.log(e);
