@@ -3,7 +3,6 @@ import {Router, Route, Switch} from "react-router-dom"
 import {inject, observer} from "mobx-react";
 import {history} from "../history"
 import Login from "views/Login"
-import HouseDes from "views/HouseDes"
 import Index from "views/Index";
 import requireAuth from "utils/requireAuth";
 import {Layout} from "antd";
@@ -11,6 +10,7 @@ import Foot from "components/Foot";
 import Head from "components/Head";
 import Community from "../views/Community";
 import Content from "../views/Content";
+import Nomatch from "views/404"
 
 
 @inject("loginStore")
@@ -23,6 +23,7 @@ class RootRouter extends Component {
         }
     }
 
+
     render() {
         return (
             <Router history={history}>
@@ -31,12 +32,12 @@ class RootRouter extends Component {
                     <div className="content">
                         <Switch>
                             <Route exact path="/" component={Index}/>
-                            <Route path="/content" component={props => requireAuth(Content, props, true)}/>
+                            <Route path="/content"
+                                   component={props => requireAuth(Content, props, this.props.loginStore.token)}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/registered" component={Login}/>
                             <Route path="/community/:comName" component={Community}/>
-                            <Route path="/housedes"
-                                   component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
+                            <Route component={Nomatch}/>
                         </Switch>
                     </div>
                     <Route component={Foot}/>

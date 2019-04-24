@@ -31,12 +31,15 @@ class CommunityInfo extends Component {
         return (
             <Layout className="CommunityInfo">
                 {
-                    false ? <Layout className="commmunityImg">
-                            <img src={this.props.community.img} alt=""/>
-                        </Layout>
-                        : <Layout className="commmunityImg">
-                            <img src={noImg} alt=""/>
-                        </Layout>
+                    this.props.community
+                        ? this.props.community['img_link']
+                            ? <Layout className="commmunityImg">
+                                <img src={this.props.community['img_link']} alt=""/>
+                              </Layout>
+                            : <Layout className="commmunityImg">
+                                <img src={noImg} alt=""/>
+                              </Layout>
+                        : ""
                 }
                 {
                     this.props.community
@@ -51,8 +54,8 @@ class CommunityInfo extends Component {
                                                     infoItem.dataIndex === "link" ?
                                                         <a href={this.props.community[infoItem.dataIndex]}>链家地址</a>
                                                         : this.props.community[infoItem.dataIndex]
-                                                            ? this.props.community[infoItem.dataIndex]
-                                                            : "暂无信息"
+                                                        ? this.props.community[infoItem.dataIndex]
+                                                        : "暂无信息"
                                                 }
                                                 </span>
                                         </li>

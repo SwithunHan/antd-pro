@@ -11,9 +11,10 @@
     img{
       height: 100%;
     }
+    overflow: hidden;
   }
   .info{
-    flex: 2;
+    flex: 1;
     &.not-info{
       justify-content: center;
       align-items: center;

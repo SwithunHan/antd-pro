@@ -32,8 +32,8 @@ class Head extends Component {
                 </Link>
                 {
                     this.props.loginStore.token !==""
-                        ? <div className="menu"><span>{this.props.loginStore.username}</span>
-                            <a href="javascript:void(0)" onClick={this.logout}>退出登陆</a></div>
+                        ? <div className="menu"><span>[{this.props.loginStore.username}]</span>
+                            <span  onClick={this.logout}>退出登陆</span></div>
                         : this.props.location.pathname !== "/login" && this.props.location.pathname !== "/registered" ?
                         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} style={{lineHeight: '64px'}}
                               className="menu">

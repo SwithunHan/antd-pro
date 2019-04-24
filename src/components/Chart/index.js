@@ -16,11 +16,16 @@ class Chart extends Component {
         this.renderChart()
     }
 
+    componentDidUpdate() {
+        this.renderChart()
+    }
+
     renderChart() {
         let option = {
             column: {
                 title: {
-                    text: this.props.title
+                    text: this.props.title,
+                    left: 'center',
                 },
                 //悬浮提示框
                 tooltip: {},
@@ -37,7 +42,10 @@ class Chart extends Component {
                 xAxis: {type: 'category'},
                 yAxis: {},
                 series: [
-                    {type: 'bar'},
+
+                    {
+                        type: 'bar', name: this.props.hoverName,
+                    },
                 ]
 
             },
@@ -59,11 +67,11 @@ class Chart extends Component {
                     // text: ['高', '低'], // 文本，默认为数值文本
                     // calculable: true,
                     inRange: {
-                        color: ['yellow', 'lightskyblue', 'orangered']
+                        color: ['#e1f5fe', '#29b6f6', '#01579b']
                     }
                 },
                 series: [{
-                    name: "小区数量",
+                    name: this.props.hoverName,
                     type: 'map',
                     mapType: 'bj',
                     label: {
@@ -96,7 +104,6 @@ class Chart extends Component {
             Ring: {
                 title: {
                     text: this.props.title,
-                    subtext: '纯属虚构',
                     x: 'center'
                 },
                 tooltip: {
@@ -105,10 +112,8 @@ class Chart extends Component {
                 },
                 series: [
                     {
-                        // name: '访问来源',
+                        name: this.props.hoverName,
                         type: 'pie',
-                        radius: '55%',
-                        center: ['50%', '60%'],
                         data: this.props.data,
                         label: {
                             normal: {
@@ -182,13 +187,18 @@ class Chart extends Component {
                     type: 'value'
                 },
                 // 声明多个 line 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
-                series: this.props.data.map((e) => ({type: 'line'})),
+                series: this.props.data.map((e) => (
+                    {
+                        type: 'line',
+                        // name: this.props.hoverName,
+                    }
+                )),
                 // series: {
                 //     type:"line",
                 // },
-                // color: [
-                //     '#FF9C6E', '#FFC069', '#95DE64', '#5CDBD3', '#69C0FF', '#85A5FF', '#B37FEB', '#FF85C0'
-                // ]
+                color: [
+                    '#FF9C6E', '#FFC069', '#95DE64', '#5CDBD3', '#69C0FF', '#85A5FF', '#B37FEB', '#FF85C0'
+                ]
             }
 
         };
@@ -211,15 +221,11 @@ Chart.propTypes = {
     title: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
     chartType: PropTypes.oneOf(['column', 'earthMap', 'Ring', 'line']),
+    hoverName: PropTypes.string
 };
 Chart.defaultProps = {
     title: "测试title",
     chartType: "columnOption",
-    data: [
-        ['Matcha Latte', 43.3],
-        ['Milk Tea', 83.1],
-        ['Cheese Cocoa', 86.4],
-        ['Walnut Brownie', 72.4]
-    ]
+    data: []
 }
 export default Chart
