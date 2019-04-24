@@ -25,7 +25,7 @@ class Login extends Component {
                         localStorage.setItem("username", values.username)
                         this.props.loginStore.setUsername(values.username)
                         this.props.loginStore.setToken(data.token)
-                        history.replace("/home")
+                        history.replace("/content")
                     })
                 } else {
                     // 注册
@@ -36,7 +36,7 @@ class Login extends Component {
                             localStorage.setItem("username", data.username)
                             this.props.loginStore.setUsername(data.username)
                             this.props.loginStore.setToken(data.token)
-                            history.replace("/home")
+                            history.replace("/content")
                         } else {
                             alert(data.username)
                         }
