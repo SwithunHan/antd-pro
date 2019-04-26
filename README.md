@@ -23,6 +23,7 @@
     同时将项目中nginx文件夹下的dataWrapper.conf文件配置到nginx上
     
 dataWrapper.conf具体配置
+
 <img src="./scheme/path.jpg"> 
     
 nginx具体配置参考[nginx官网](http://nginx.org/)
