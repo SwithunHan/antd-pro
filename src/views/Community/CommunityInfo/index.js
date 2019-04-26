@@ -27,9 +27,6 @@ class CommunityInfo extends Component {
         this.state = {}
     }
 
-    componentDidMount() {
-        console.log(this.props.community)
-    }
 
     render() {
         return (
@@ -50,19 +47,23 @@ class CommunityInfo extends Component {
                 <Layout className="info">
                     <ul>
                         {
-                            // columns.map((infoItem, index) => (
-                            //     <li key={index}>
-                            //         <span>{infoItem.title}:</span>
-                            //         <Skeleton loading={!this.props.community} active paragraph={false}>
-                            //             <span>
-                            //                     {
-                            //                         infoItem.dataIndex === "link" ? <a href={this.props.community[infoItem.dataIndex]}>链家地址</a>
-                            //                             : this.props.community[infoItem.dataIndex] ? this.props.community[infoItem.dataIndex] : "暂无信息"
-                            //                     }
-                            //                     </span>
-                            //         </Skeleton>
-                            //     </li>
-                            // ))
+                            columns.map((infoItem, index) => (
+                                <li key={index}>
+                                    <span>{infoItem.title}:</span>
+                                    <span>
+                                      {
+                                          infoItem.dataIndex === "link" ?
+                                              <a href={this.props.community[infoItem.dataIndex] !== undefined
+                                                  ? this.props.community[infoItem.dataIndex] : ""}>链家地址</a>
+                                              : this.props.community[infoItem.dataIndex] !== undefined
+                                              ? this.props.community[infoItem.dataIndex] : "暂无信息"
+                                      }
+                                      </span>
+                                    <Skeleton loading={!this.props.community} active paragraph={false}>
+
+                                    </Skeleton>
+                                </li>
+                            ))
                         }
                     </ul>
                 </Layout>
@@ -72,4 +73,7 @@ class CommunityInfo extends Component {
     }
 }
 
+CommunityInfo.defaultProps = {
+    community: {},
+}
 export default CommunityInfo

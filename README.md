@@ -1,95 +1,27 @@
-### 链家房价数据分析
+## 链家房价数据分析[线上地址](https://suixinsuixing.top).
 
-拉取项目到本地
+
+###运行项目
 ```
+    克隆到本地
     git clone https://github.com/SwithunHan/antd-pro.git
-```
-安装项目依赖
-```
+    
+    安装项目依赖
     npm install
-```
-本地运行项目
-```
+    
+    本地运行项目
     npm run dev
 ```
-打包项目
-```
+在本地查看项目[127.0.0.1:8000](http://127.0.0.1:8000)
+   
+### 部署项目到服务器
+
+    打包项目
     npm run build
-```
-#### 项目目录
+    
+    将build文件夹里面的文件上传到服务器部署路径和下图nginx配置路径保持一致
+    同时将项目中nginx文件夹下的dataWrapper.conf文件配置到nginx上
+    
+nginx具体配置参考[nginx官网](http://nginx.org/)
 
-```
-    |-- antd-pro
-        |-- nginx
-        |   |-- dataWrapper.conf
-        |   |-- shop.conf
-        |-- public
-        |   |-- favicon.ico
-        |   |-- index.html
-        |   |-- manifest.json
-        |-- scripts
-        |   |-- build.js
-        |   |-- start.js
-        |   |-- test.js
-        |-- src
-            |-- index.js
-            |-- api
-            |   |-- fetch.js
-            |   |-- index.js
-            |-- components
-            |   |-- Chart
-            |   |   |-- index.js
-            |   |   |-- style.scss
-            |   |-- Foot
-            |   |   |-- index.js
-            |   |   |-- style.scss
-            |   |-- Head
-            |   |   |-- index.js
-            |   |   |-- style.scss
-            |   |-- HouseTable
-            |   |   |-- HouseTable.js
-            |   |   |-- style.scss
-            |   |-- ListNav
-            |       |-- index.js
-            |       |-- style.scss
-            |-- history
-            |   |-- index.js
-            |-- router
-            |   |-- RootRouter.js
-            |-- statics
-            |   |-- images
-            |   |   |-- logo.svg
-            |   |   |-- noImg.png
-            |   |-- styles
-            |       |-- index.scss
-            |-- stores
-            |   |-- loginStore.js
-            |-- utils
-            |   |-- requireAuth.js
-            |-- views
-                |-- 404
-                |   |-- index.js
-                |-- Community
-                |   |-- index.js
-                |   |-- style.scss
-                |   |-- CommunityInfo
-                |       |-- index.js
-                |       |-- style.scss
-                |-- Content
-                |   |-- index.js
-                |-- Home
-                |   |-- index.js
-                |   |-- style.scss
-                |   |-- QuantityCompared
-                |       |-- index.js
-                |       |-- style.scss
-                |-- HouseDes
-                |   |-- index.js
-                |-- Index
-                |   |-- index.js
-                |   |-- style.scss
-                |-- Login
-                    |-- index.js
-                    |-- style.scss
 
-```
