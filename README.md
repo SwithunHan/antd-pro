@@ -1,6 +1,13 @@
 ## 链家房价数据分析[线上地址](http://suixinsuixing.top).
 
+### 项目技术选型
 
+    React --v16
+    React-Router --v4
+    mobx
+    antd
+    Echarts --v4
+    
 ###运行项目
 ```
     克隆到本地
