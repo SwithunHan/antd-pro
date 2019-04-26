@@ -1,20 +1,11 @@
 import React, {Component} from 'react';
-import {Router, Route, Switch} from "react-router-dom"
-import {inject, observer} from "mobx-react";
+import {Router, Route, Switch, Redirect} from "react-router-dom"
 import {history} from "../history"
-import Login from "views/Login"
-import Index from "views/Index";
-import requireAuth from "utils/requireAuth";
-import {Layout} from "antd";
-import Foot from "components/Foot";
-import Head from "components/Head";
-import Community from "../views/Community";
-import Content from "../views/Content";
+import App from "../views/App";
 import Nomatch from "views/404"
+import Login from "../views/Login";
+import Index from "../views/Index";
 
-
-@inject("loginStore")
-@observer
 class RootRouter extends Component {
     constructor(props) {
         super(props);
@@ -23,25 +14,17 @@ class RootRouter extends Component {
         }
     }
 
-
     render() {
         return (
             <Router history={history}>
-                <Layout id="wrapper">
-                    <Route component={Head}/>
-                    <div className="content">
-                        <Switch>
-                            <Route exact path="/" component={Index}/>
-                            <Route path="/content"
-                                   component={props => requireAuth(Content, props, this.props.loginStore.token)}/>
-                            <Route path="/login" component={Login}/>
-                            <Route path="/registered" component={Login}/>
-                            <Route path="/community/:comName" component={Community}/>
-                            <Route component={Nomatch}/>
-                        </Switch>
-                    </div>
-                    <Route component={Foot}/>
-                </Layout>
+                <Switch>
+                    <Route exact path="/" component={Index}/>
+                    <Route path="/app" component={App}/>
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/registered" component={Login}/>
+                    <Route exact path="/404" component={Nomatch}/>
+                    <Redirect to="/404"/>
+                </Switch>
             </Router>
         );
     }

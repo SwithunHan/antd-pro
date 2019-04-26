@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
 import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import "./style.scss"
 import {Layout} from 'antd';
 import ListNav from "components/ListNav";
-import {Route, Switch} from "react-router";
+import {Redirect, Route, Switch} from "react-router";
 import QuantityCompared from "./QuantityCompared"
 
 
@@ -28,7 +27,8 @@ class Home extends Component {
                         minHeight: 'calc(100vh - 130px)',
                     }}>
                         <Switch>
-                            <Route path="/content" exact component={QuantityCompared}/>
+                            <Route exact path="/app/content" component={QuantityCompared}/>
+                            <Redirect to="/404"/>
                         </Switch>
 
                     </Layout>

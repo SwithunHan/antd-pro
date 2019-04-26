@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
-import {Button, Form, Icon, Input} from 'antd';
+import {Button, Form, Icon, Input, Layout} from 'antd';
 import "./style.scss"
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import {inject, observer} from "mobx-react"
 import {login, registered} from "api/index";
 import {history} from "../../history"
+import Head from "../../components/Head";
+import Foot from "../../components/Foot";
 
 @inject("loginStore")
 @observer
@@ -51,41 +53,48 @@ class Login extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         return (
-            <Form onSubmit={this.handleSubmit} className="login-form">
-                <Form.Item>
-                    {getFieldDecorator('username', {
-                        rules: [{required: true, message: '请输入用户名!'}],
-                    })(
-                        <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>} placeholder="用户名"/>
-                    )}
-                </Form.Item>
-                <Form.Item>
-                    {getFieldDecorator('password', {rules: [{required: true, message: '请输入密码!'}],})(<Input
-                        prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
-                        placeholder="密码"/>)}
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
-                        {
-                            this.props.match.path === "/login"
-                                ? "登陆"
-                                : "注册"
-                        }
-                    </Button>
-                    {
-                        this.props.match.path === "/login"
-                            ? <div>
-                                <span>没有账号？</span>
-                                <Link to="/registered">立即注册</Link>
-                            </div>
-                            : (<div>
-                                <span>已有账号？</span>
-                                <Link to="/login">直接登陆</Link>
-                            </div>)
-                    }
+            <Layout id="wrapper">
+                <Route component={Head}/>
+                <div className="content">
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+                        <Form.Item>
+                            {getFieldDecorator('username', {
+                                rules: [{required: true, message: '请输入用户名!'}],
+                            })(
+                                <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                       placeholder="用户名"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('password', {rules: [{required: true, message: '请输入密码!'}],})(<Input
+                                prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
+                                placeholder="密码"/>)}
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                {
+                                    this.props.match.path === "/login"
+                                        ? "登陆"
+                                        : "注册"
+                                }
+                            </Button>
+                            {
+                                this.props.match.path === "/login"
+                                    ? <div>
+                                        <span>没有账号？</span>
+                                        <Link to="/registered">立即注册</Link>
+                                    </div>
+                                    : (<div>
+                                        <span>已有账号？</span>
+                                        <Link to="/login">直接登陆</Link>
+                                    </div>)
+                            }
 
-                </Form.Item>
-            </Form>
+                        </Form.Item>
+                    </Form>
+                </div>
+                <Route component={Foot}/>
+            </Layout>
         );
     }
 }

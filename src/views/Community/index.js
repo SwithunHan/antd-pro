@@ -4,6 +4,7 @@ import {getComunity, getHouse} from "api/index"
 import HouseTable from "components/HouseTable/HouseTable";
 import {Layout} from "antd";
 import CommunityInfo from "./CommunityInfo";
+import {history} from "../../history"
 
 class Community extends Component {
     constructor(props) {
@@ -20,9 +21,14 @@ class Community extends Component {
     componentDidMount() {
         getComunity(`search=${this.props.match.params.comName}`)
             .then((data) => {
-                this.setState({
-                    community: data.results[0]
-                })
+                if (data.results[0]) {
+                    this.setState({
+                        community: data.results[0]
+                    })
+                } else {
+                    history.replace("/404")
+                }
+
             })
             .catch(e => {
                 console.log(e)
@@ -42,7 +48,7 @@ class Community extends Component {
         return (
             <Layout className="Community">
                 <h2>小区信息</h2>
-                <CommunityInfo community={this.state.community}/>
+                <CommunityInfo />
                 <h2>小区内房源信息</h2>
                 <HouseTable newHouseInfo={this.state.houseList} paginationOptions={this.state.paginationOptions}/>
             </Layout>

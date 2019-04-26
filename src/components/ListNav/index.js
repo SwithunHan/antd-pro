@@ -12,38 +12,45 @@ class ListNav extends Component {
         this.state = {
             navList: [
                 {
-                    name: "房屋数量分析",
+                    name: "数量分析",
                     subNav: [
                         {
-                            name: "房屋数量对比",
-                            link: "/home"
+                            name: "各行政区小区数量",
+                            link: "/"
                         },
                         {
-                            name: "房屋沿地铁数量对比",
+                            name: "各行政区房屋数量",
+                            link: "/"
+                        },
+                        {
+                            name: "各行政区房屋成交数量",
+                            link: "/"
+                        },
+                        {
+                            name: "各行政区房屋户型数量",
+                            link: "/"
+                        },
+                        {
+                            name: "各路地铁周围房子数量",
                             link: "/"
                         }
                     ]
                 },
                 {
-                    name: "房屋价格分析",
+                    name: "价格分析",
                     subNav: [
                         {
-                            name: "房屋行政区价格对比",
+                            name: "各行政区房屋平均价格",
+                            link: "/"
+                        },
+                        {
+                            name: "房屋沿地铁价格对比",
                             link: "/"
                         },
                         {
                             name: "房屋沿地铁价格对比",
                             link: "/"
                         }
-                    ]
-                },
-                {
-                    name: "房屋户型分析",
-                    subNav: [
-                        {
-                            name: "行政区内户型数量",
-                            link: "/housetype"
-                        },
                     ]
                 },
             ]

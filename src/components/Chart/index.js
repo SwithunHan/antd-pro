@@ -4,6 +4,7 @@ import "./style.scss"
 import PropTypes from "prop-types";
 import beijing from "echarts/map/json/province/beijing"
 import * as d3 from "d3";
+import {Spin} from "antd";
 
 class Chart extends Component {
     constructor(props) {
@@ -13,10 +14,6 @@ class Chart extends Component {
     }
 
     componentDidMount() {
-        this.renderChart()
-    }
-
-    componentDidUpdate() {
         this.renderChart()
     }
 
@@ -213,6 +210,7 @@ class Chart extends Component {
             <div className="Chart" ref={(e) => {
                 this.echartsElement = e
             }} style={this.props.style}>
+                <Spin size="large" />
             </div>)
     }
 }
