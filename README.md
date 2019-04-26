@@ -18,9 +18,12 @@
 
     打包项目
     npm run build
-    
+   
     将build文件夹里面的文件上传到服务器部署路径和下图nginx配置路径保持一致
     同时将项目中nginx文件夹下的dataWrapper.conf文件配置到nginx上
+    
+dataWrapper.conf具体配置
+<img src="./scheme/path.jpg"> 
     
 nginx具体配置参考[nginx官网](http://nginx.org/)
 
