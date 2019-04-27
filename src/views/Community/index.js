@@ -19,6 +19,7 @@ class Community extends Component {
     }
 
     componentDidMount() {
+        //获取小区信息
         getComunity(`search=${this.props.match.params.comName}`)
             .then((data) => {
                 if (data.results[0]) {
@@ -33,6 +34,7 @@ class Community extends Component {
             .catch(e => {
                 console.log(e)
             })
+        //获取小区房屋信息
         getHouse(`community=${this.props.match.params.comName}`)
             .then((data) => {
                 this.setState({
@@ -48,7 +50,7 @@ class Community extends Component {
         return (
             <Layout className="Community">
                 <h2>小区信息</h2>
-                <CommunityInfo />
+                <CommunityInfo community={this.state.community}/>
                 <h2>小区内房源信息</h2>
                 <HouseTable newHouseInfo={this.state.houseList} paginationOptions={this.state.paginationOptions}/>
             </Layout>

@@ -4,6 +4,7 @@ import RootRouter from './router/RootRouter';
 import {Provider} from "mobx-react";
 import loginStore from "stores/loginStore"
 import "static/styles/index.scss"
+
 const stores = {loginStore}
 
 ReactDOM.render(

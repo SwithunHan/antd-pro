@@ -18,7 +18,7 @@ class Home extends Component {
     render() {
         return (
             <Layout>
-                <ListNav/>
+                <Route component={ListNav}/>
                 <Layout style={{padding: '24px 24px 0'}}>
                     <Layout style={{
                         background: '#ffffff',
@@ -28,6 +28,13 @@ class Home extends Component {
                     }}>
                         <Switch>
                             <Route exact path="/app/content" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/house" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/clinch" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/subway" component={QuantityCompared}/>
+                            <Route exact path="/app/content/price/average" component={QuantityCompared}/>
+                            <Route exact path="/app/content/price/subway" component={QuantityCompared}/>
+                            <Route exact path="/app/content/type/area" component={QuantityCompared}/>
+                            <Route exact path="/app/content/type/subway" component={QuantityCompared}/>
                             <Redirect to="/404"/>
                         </Switch>
 

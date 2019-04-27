@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Layout, Skeleton} from "antd";
+import {Layout} from "antd";
 import "./style.scss"
 import noImg from "static/images/noImg.png"
 
@@ -32,40 +32,42 @@ class CommunityInfo extends Component {
         return (
             <Layout className="CommunityInfo">
                 {
-                    this.props.community
-                        ? this.props.community['img_link']
-                        ? <Layout className="commmunityImg">
-                            <img src={this.props.community['img_link']} alt=""/>
-                        </Layout>
-                        : <Layout className="commmunityImg">
-                            <img src={noImg} alt=""/>
-                        </Layout>
-                        : <Layout className="commmunityImg">
-                            <img src={noImg} alt=""/>
-                        </Layout>
+                    //判断是否有小区信息
+                    this.props.community ? (
+                            //小区信息中有小区图片
+                            this.props.community['img_link'] !== undefined ? (
+                                <Layout className="commmunityImg">
+                                    <img src={this.props.community['img_link']} alt=""/>
+                                </Layout>
+                            ) : (
+                                <Layout className="commmunityImg">
+                                    <img src={noImg} alt=""/>
+                                </Layout>
+                            ))
+                        : ""
                 }
                 <Layout className="info">
-                    <ul>
-                        {
-                            columns.map((infoItem, index) => (
-                                <li key={index}>
-                                    <span>{infoItem.title}:</span>
-                                    <span>
-                                      {
-                                          infoItem.dataIndex === "link" ?
-                                              <a href={this.props.community[infoItem.dataIndex] !== undefined
-                                                  ? this.props.community[infoItem.dataIndex] : ""}>链家地址</a>
-                                              : this.props.community[infoItem.dataIndex] !== undefined
-                                              ? this.props.community[infoItem.dataIndex] : "暂无信息"
-                                      }
-                                      </span>
-                                    <Skeleton loading={!this.props.community} active paragraph={false}>
+                    {
+                        this.props.community ? (
+                            <ul>
+                                {
+                                    columns.map((infoItem, index) => (
+                                        <li key={index}>
+                                            <span>{infoItem.title}:</span>
+                                            <span>
+                                             {
+                                                 infoItem.dataIndex === "link" ?
+                                                     <a href={this.props.community[infoItem.dataIndex]}>链家地址</a>
+                                                     : this.props.community[infoItem.dataIndex] ? this.props.community[infoItem.dataIndex] : "暂无信息"
+                                             }
+                                            </span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        ) : ""
+                    }
 
-                                    </Skeleton>
-                                </li>
-                            ))
-                        }
-                    </ul>
                 </Layout>
 
             </Layout>
@@ -74,6 +76,6 @@ class CommunityInfo extends Component {
 }
 
 CommunityInfo.defaultProps = {
-    community: {},
+    community: {}
 }
 export default CommunityInfo

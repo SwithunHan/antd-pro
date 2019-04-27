@@ -11,10 +11,13 @@ class Chart extends Component {
         super(props);
         this.state = {}
         this.echartsElement = null // echarts dom
+
     }
 
-    componentDidMount() {
-        this.renderChart()
+    componentDidUpdate() {
+        if (this.props.data.length>0) {
+            this.renderChart()
+        }
     }
 
     renderChart() {
@@ -64,7 +67,7 @@ class Chart extends Component {
                     // text: ['高', '低'], // 文本，默认为数值文本
                     // calculable: true,
                     inRange: {
-                        color: ['#e1f5fe', '#29b6f6', '#01579b']
+                        color: ['#ffecb3', '#e85285', '#6a1b9a']
                     }
                 },
                 series: [{
@@ -201,7 +204,9 @@ class Chart extends Component {
         };
         let chart = echarts.init(this.echartsElement) || echarts.getInstanceByDom(this.echartsElement);
         echarts.registerMap('bj', beijing);
-        chart.setOption(option[this.props.chartType])
+        if (this.props.data) {
+            chart.setOption(option[this.props.chartType])
+        }
     }
 
     render() {
@@ -210,7 +215,7 @@ class Chart extends Component {
             <div className="Chart" ref={(e) => {
                 this.echartsElement = e
             }} style={this.props.style}>
-                <Spin size="large" />
+                <Spin size="large" tip="加载图表中"/>
             </div>)
     }
 }

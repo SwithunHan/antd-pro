@@ -22,8 +22,9 @@ class App extends Component {
                 <Route component={Head}/>
                 <div className="content">
                     <Switch>
-                        <Route path="/app/content" component={props => (requireAuth(Home, props, this.props.loginStore.token))}/>
-                        <Route exact path="/app/community/:comName" component={Community}/>
+                        <Route path="/app/content"
+                               component={props => (requireAuth(Home, props, this.props.loginStore.token))}/>
+                        <Route path="/app/community/:comName" component={Community}/>
                         <Redirect to="/404"/>
                     </Switch>
                 </div>
