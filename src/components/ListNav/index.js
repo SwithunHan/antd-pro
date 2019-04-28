@@ -8,6 +8,7 @@ const {Sider} = Layout;
 
 
 class ListNav extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -61,10 +62,21 @@ class ListNav extends Component {
                 },
             ],
         }
+        if (sessionStorage.getItem("openkeys") === undefined) {
+            sessionStorage.setItem("openkeys", "first-nav-0,first-nav-1,first-nav-2")
+        }
     }
 
-    componentDidMount() {
-        console.log(this.props.location.pathname)
+    firstMenu = (e) => {
+        let openkeys = [...sessionStorage.getItem("openkeys").split(",")]
+        let index = openkeys.indexOf(e.key);
+        if (index !== -1) {
+            openkeys.splice(index, 1)
+        } else {
+            openkeys.push(e.key)
+        }
+        sessionStorage.setItem("openkeys", openkeys.join(","))
+
     }
 
     render() {
@@ -73,7 +85,7 @@ class ListNav extends Component {
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={[this.props.location.pathname]}
-                    defaultOpenKeys={["first-nav-0","first-nav-1","first-nav-2"]}
+                    defaultOpenKeys={sessionStorage.getItem("openkeys").split(",")}
                     style={{height: '100%', borderRight: 0}}
                     onClick={this.handleClick}
                 >

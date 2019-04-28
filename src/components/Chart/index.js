@@ -15,7 +15,7 @@ class Chart extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.data.length>0) {
+        if (this.props.data.length > 0) {
             this.renderChart()
         }
     }
@@ -39,14 +39,21 @@ class Chart extends Component {
                     //     {product: 'Walnut Brownie', 'value': 72.4}
                     // ]
                 },
-                xAxis: {type: 'category'},
+                xAxis: {
+                    type: 'category',
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 40
+                    },
+                },
                 yAxis: {},
                 series: [
 
                     {
                         type: 'bar', name: this.props.hoverName,
                     },
-                ]
+                ],
+                color: "#4dabf7"
 
             },
             earthMap: {
@@ -64,7 +71,7 @@ class Chart extends Component {
                     max: d3.max(this.props.data, (d) => d.value),
                     // left: 'left',
                     // top: 'bottom',
-                    // text: ['高', '低'], // 文本，默认为数值文本
+                    text: ['高', '低'], // 文本，默认为数值文本
                     // calculable: true,
                     inRange: {
                         color: ['#ffecb3', '#e85285', '#6a1b9a']
@@ -203,7 +210,9 @@ class Chart extends Component {
 
         };
         let chart = echarts.init(this.echartsElement) || echarts.getInstanceByDom(this.echartsElement);
+
         echarts.registerMap('bj', beijing);
+
         if (this.props.data) {
             chart.setOption(option[this.props.chartType])
         }
@@ -226,7 +235,8 @@ Chart.propTypes = {
     chartType: PropTypes.oneOf(['column', 'earthMap', 'Ring', 'line']),
     hoverName: PropTypes.string
 };
-Chart.defaultProps = {
+Chart
+    .defaultProps = {
     title: "测试title",
     chartType: "columnOption",
     data: []
