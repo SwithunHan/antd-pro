@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import Chart from "../../../components/Chart";
-import {getHouseNumber, getHousetype} from "../../../api";
+import {getHouseNumber} from "../../../api";
 import "./style.scss"
-import SelectArea from "../../../components/SelectArea/SelectArea";
+import {Layout, Select} from "antd";
 
+const Option = Select.Option;
 
 class HouseNumber extends Component {
     constructor(props) {
@@ -14,7 +15,12 @@ class HouseNumber extends Component {
     }
 
     componentDidMount() {
-        getHouseNumber().then((data) => {
+        this.getData()
+    }
+
+    getData = (value = "在售") => {
+        console.log(value)
+        getHouseNumber(value).then((data) => {
             let newData = data.results.map((item) => (
                 {
                     name: item.name.replace("区", "") + "区",
@@ -37,15 +43,22 @@ class HouseNumber extends Component {
             this.setState({
                 data: newData
             })
+        }).catch(e => {
+            console.log(e)
         })
-            .catch(e => {
-                console.log(e)
-            })
+
     }
 
     render() {
         return (
             <div className="QuantityComparison">
+                <Layout
+                    style={{width: "100%", justifyContent: "flex-start", paddingLeft: "60px", background: "#ffffff"}}>
+                    <Select defaultValue={"在售"} style={{width: 120}} onChange={this.getData}>
+                        <Option value="在售">在售</Option>
+                        <Option value="成交">成交</Option>
+                    </Select>
+                </Layout>
                 <Chart chartType="column" data={this.state.data} title="行政区房屋数量对比" hoverName="数量"/>
                 <Chart chartType="earthMap" data={this.state.data} title="各行政区房屋数量分布" hoverName="数量"/>
             </div>

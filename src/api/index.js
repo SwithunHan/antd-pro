@@ -52,7 +52,7 @@ export async function getHousetype(params) {
 
 export async function getHouseNumber(params) {
     try {
-        const res = await get(`${host}/api/housenumber`);
+        const res = await get(`${host}/api/housenumber?houseState=${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
