@@ -35,7 +35,7 @@ class QuantityComparison extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            distribution: []
+            data: []
         }
     }
 
@@ -54,13 +54,15 @@ class QuantityComparison extends Component {
                 newData.forEach((item, index) => {
                     if (item.name === "亦庄开发区") {
                         newData.forEach((daxing) => {
-                            daxing.value += item.value
+                            if (daxing.name === "大兴区") {
+                                daxing.value += item.value
+                            }
                         })
                         newData.splice(index, 1)
                     }
                 })
                 this.setState({
-                    distribution: newData
+                    data: newData
                 })
             })
             .catch(e => {
@@ -71,8 +73,8 @@ class QuantityComparison extends Component {
     render() {
         return (
             <div className="QuantityComparison">
-                <Chart chartType="column" data={this.state.distribution} title="行政区内小区数量对比" hoverName="数量"/>
-                <Chart chartType="earthMap" data={this.state.distribution} title="" hoverName="数量"/>
+                <Chart chartType="column" data={this.state.data} title="各行政区小区数量对比" hoverName="数量"/>
+                <Chart chartType="earthMap" data={this.state.data} title="各行政区小区数量分布" hoverName="数量"/>
             </div>
         )
     }

@@ -40,6 +40,25 @@ export async function getHouse(params) {
         console.log(e);
     }
 }
+
+export async function getHousetype(params) {
+    try {
+        const res = await get(`${host}/api/housetype/?community__district=${params}`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export async function getHouseNumber(params) {
+    try {
+        const res = await get(`${host}/api/housenumber`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 //登陆
 export async function login(params) {
     try {
@@ -49,6 +68,7 @@ export async function login(params) {
         console.log(e);
     }
 }
+
 //注册
 export async function registered(params) {
     try {

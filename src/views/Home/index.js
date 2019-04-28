@@ -5,6 +5,8 @@ import {Layout} from 'antd';
 import ListNav from "components/ListNav";
 import {Redirect, Route, Switch} from "react-router";
 import QuantityCompared from "./QuantityCompared"
+import HouseType from "./HouseType";
+import HouseNumber from "./HouseNumber";
 
 
 @inject("loginStore")
@@ -28,12 +30,12 @@ class Home extends Component {
                     }}>
                         <Switch>
                             <Route exact path="/app/content" component={QuantityCompared}/>
-                            <Route exact path="/app/content/number/house" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/house" component={HouseNumber}/>
                             <Route exact path="/app/content/number/clinch" component={QuantityCompared}/>
                             <Route exact path="/app/content/number/subway" component={QuantityCompared}/>
                             <Route exact path="/app/content/price/average" component={QuantityCompared}/>
                             <Route exact path="/app/content/price/subway" component={QuantityCompared}/>
-                            <Route exact path="/app/content/type/area" component={QuantityCompared}/>
+                            <Route exact path="/app/content/type/area" component={HouseType}/>
                             <Route exact path="/app/content/type/subway" component={QuantityCompared}/>
                             <Redirect to="/404"/>
                         </Switch>
