@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {inject, observer} from "mobx-react"
 import "./style.scss"
 import {Layout} from 'antd';
-import Chart from "components/Chart"
+import ListNav from "components/ListNav";
+import {Redirect, Route, Switch} from "react-router";
+import QuantityCompared from "./QuantityCompared"
+import HouseType from "./HouseType";
+import HouseNumber from "./HouseNumber";
 
-const {Content} = Layout;
 
 @inject("loginStore")
 @observer
@@ -16,14 +19,30 @@ class Home extends Component {
 
     render() {
         return (
+            <Layout>
+                <Route component={ListNav}/>
                 <Layout style={{padding: '24px 24px 0'}}>
-                    <Content style={{
-                        background: '#ffffff', padding: 24, margin: 0, minHeight: 280,
+                    <Layout style={{
+                        background: '#ffffff',
+                        padding: 24,
+                        margin: 0,
+                        minHeight: 'calc(100vh - 130px)',
                     }}>
-                        <Chart/>
-                        hello world!!
-                    </Content>
+                        <Switch>
+                            <Route exact path="/app/content" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/house" component={HouseNumber}/>
+                            <Route exact path="/app/content/number/clinch" component={QuantityCompared}/>
+                            <Route exact path="/app/content/number/subway" component={QuantityCompared}/>
+                            <Route exact path="/app/content/price/average" component={QuantityCompared}/>
+                            <Route exact path="/app/content/price/subway" component={QuantityCompared}/>
+                            <Route exact path="/app/content/type/area" component={HouseType}/>
+                            <Route exact path="/app/content/type/subway" component={QuantityCompared}/>
+                            <Redirect to="/404"/>
+                        </Switch>
+
+                    </Layout>
                 </Layout>
+            </Layout>
         )
     }
 }

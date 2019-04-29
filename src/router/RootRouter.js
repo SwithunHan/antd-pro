@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import {Router, Route, Switch} from "react-router-dom"
-import {inject, observer} from "mobx-react";
+import {Router, Route, Switch, Redirect} from "react-router-dom"
 import {history} from "../history"
-import Login from "views/Login"
-import HouseDes from "views/HouseDes"
-import Index from "views/Index";
-import requireAuth from "../utils/requireAuth";
+import App from "../views/App";
+import Nomatch from "views/404"
+import Login from "../views/Login";
+import Index from "../views/Index";
 
-
-@inject("loginStore")
-@observer
 class RootRouter extends Component {
     constructor(props) {
         super(props);
@@ -20,18 +16,19 @@ class RootRouter extends Component {
 
     render() {
         return (
-                <Router history={history}>
-                    <Switch>
-                        <Route exact path="/" component={Index}/>
-                        <Route path="/home" component={Index}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/housedes" component={props => requireAuth(HouseDes, props, this.props.loginStore.token)}/>
-                    </Switch>
-                </Router>
+            <Router history={history}>
+                <Switch>
+                    <Route exact path="/" component={Index}/>
+                    <Route path="/app" component={App}/>
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/registered" component={Login}/>
+                    <Route exact path="/404" component={Nomatch}/>
+                    <Redirect to="/404"/>
+                </Switch>
+            </Router>
         );
     }
 }
-
 
 
 export default RootRouter;

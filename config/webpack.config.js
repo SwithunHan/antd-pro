@@ -34,7 +34,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
-// style files regexes
+// styles files regexes
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
@@ -65,10 +65,10 @@ module.exports = function (webpackEnv) {
     // Get environment variables to inject into our app.
     const env = getClientEnvironment(publicUrl);
 
-    // common function to get style loaders
+    // common function to get styles loaders
     const getStyleLoaders = (cssOptions, preProcessor) => {
         const loaders = [
-            isEnvDevelopment && require.resolve('style-loader'),
+            isEnvDevelopment && require.resolve('styles-loader'),
             isEnvProduction && {
                 loader: MiniCssExtractPlugin.loader,
                 options: Object.assign(
@@ -383,9 +383,9 @@ module.exports = function (webpackEnv) {
                         },
                         // "postcss" loader applies autoprefixer to our CSS.
                         // "css" loader resolves paths in CSS and adds assets as dependencies.
-                        // "style" loader turns CSS into JS modules that inject <style> tags.
+                        // "styles" loader turns CSS into JS modules that inject <styles> tags.
                         // In production, we use MiniCSSExtractPlugin to extract that CSS
-                        // to a file, but in development "style" loader enables hot editing
+                        // to a file, but in development "styles" loader enables hot editing
                         // of CSS.
                         // By default we support CSS Modules with the extension .module.css
                         {
