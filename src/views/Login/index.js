@@ -38,7 +38,7 @@ class Login extends Component {
                             localStorage.setItem("username", data.username)
                             this.props.loginStore.setUsername(data.username)
                             this.props.loginStore.setToken(data.token)
-                            history.replace("/content")
+                            history.replace("/app/content")
                         } else {
                             alert(data.username)
                         }

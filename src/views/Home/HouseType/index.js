@@ -34,6 +34,9 @@ class HouseType extends Component {
             })
     }
 
+    componentWillUnmount(){
+
+    }
     render() {
         return (
             <div className="QuantityComparison">

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Select} from "antd";
 import {getDistribution} from "../../api";
 import "./style.scss"
+
 const Option = Select.Option;
 
 class SelectArea extends Component {
@@ -34,8 +35,7 @@ class SelectArea extends Component {
                 <Select defaultValue={"朝阳"} style={{width: 120}} onChange={this.props.selectArea}>
                     {
                         this.state.selectData.map((item) => (
-                            item.name === "亦庄开发区" ? <Option value={item.name} key={item.key}>{item.name}</Option> :
-                                <Option value={item.name} key={item.key}>{item.name + "区"}</Option>
+                            <Option value={item.name} key={item.key}>{item.name.split("区")[0] + "区"}</Option>
                         ))
                     }
                 </Select>

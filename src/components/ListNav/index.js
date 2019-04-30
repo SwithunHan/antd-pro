@@ -25,7 +25,7 @@ class ListNav extends Component {
                             link: "/app/content/number/house"
                         },
                         {
-                            name: "各行政区房屋成交数量",
+                            name: "各行政区房屋成交量走势",
                             link: "/app/content/number/clinch"
                         },
                         {
@@ -62,8 +62,8 @@ class ListNav extends Component {
                 },
             ],
         }
-        if (sessionStorage.getItem("openkeys") === undefined) {
-            sessionStorage.setItem("openkeys", "first-nav-0,first-nav-1,first-nav-2")
+        if (sessionStorage.getItem("openkeys") === null) {
+            sessionStorage.setItem("openkeys", "first-nav-0")
         }
     }
 
@@ -89,6 +89,7 @@ class ListNav extends Component {
                     style={{height: '100%', borderRight: 0}}
                     onClick={this.handleClick}
                 >
+
                     {
                         // 一级目录
                         this.state.navList.map((firstItem, firstIndex) => (
