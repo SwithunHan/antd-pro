@@ -17,6 +17,14 @@ class Home extends Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        console.log("Home 渲染完成")
+    }
+
+    componentDidUpdate(preProps, preState, value) {
+        console.log()
+    }
+
     render() {
         return (
             <Layout>

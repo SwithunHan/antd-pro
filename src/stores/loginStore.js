@@ -1,6 +1,6 @@
 import {observable, action} from "mobx"
 
-class loginStore {
+class LoginStore {
     @observable username = localStorage.getItem("username") || "";
     @observable num = 0;
     @observable token = localStorage.getItem("token") || "";
@@ -16,4 +16,4 @@ class loginStore {
 
 }
 
-export default new loginStore()
+export default new LoginStore()

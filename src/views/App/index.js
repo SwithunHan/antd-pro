@@ -16,14 +16,16 @@ class App extends Component {
         this.state = {}
     }
 
+    shouldComponentUpdate(){
+        return false
+    }
     render() {
         return (
             <Layout id="wrapper">
                 <Route component={Head}/>
                 <div className="content">
                     <Switch>
-                        <Route path="/app/content"
-                               component={props => (requireAuth(Home, props, this.props.loginStore.token))}/>
+                        <Route path="/app/content" component={props => (requireAuth(Home, props, this.props.loginStore.token))}/>
                         <Route path="/app/community/:comName" component={Community}/>
                         <Redirect to="/404"/>
                     </Switch>
