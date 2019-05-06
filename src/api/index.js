@@ -58,7 +58,14 @@ export async function getHouseNumber(params) {
         console.log(e);
     }
 }
-
+export async function getSellNumber(params) {
+    try {
+        const res = await get(`${host}/api/sellnumberarea`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
 //登陆
 export async function login(params) {
     try {
