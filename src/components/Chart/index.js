@@ -177,7 +177,7 @@ class Chart extends Component {
                     source: this.props.data
                 },
                 legend: {
-                    data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                    data: this.props.legend
                 },
                 grid: {
                     left: '3%',
@@ -194,12 +194,16 @@ class Chart extends Component {
                     type: 'value'
                 },
                 // 声明多个 line 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
-                series: this.props.data.map((e) => (
+                // series: this.props.data.map((e) => (
+                //     {
+                //         type: 'line',
+                //     }
+                // )),
+                series: [
                     {
                         type: 'line',
-                        // name: this.props.hoverName,
                     }
-                )),
+                ],
                 // series: {
                 //     type:"line",
                 // },
@@ -233,7 +237,8 @@ Chart.propTypes = {
     title: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
     chartType: PropTypes.oneOf(['column', 'earthMap', 'Ring', 'line']),
-    hoverName: PropTypes.string
+    hoverName: PropTypes.string,
+    legend:PropTypes.array
 };
 Chart
     .defaultProps = {

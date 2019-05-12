@@ -1,16 +1,31 @@
 import React, {Component} from 'react'
 import Chart from "components/Chart";
-import {getHouseNumber} from "api/index";
 import "./style.scss"
-import {Layout, Select} from "antd";
+import {Layout, Select, Table} from "antd";
+import {getWebSignNew, getWebSignOld} from "api/index";
 
 const Option = Select.Option;
+
+const columns = [
+    {title: "日期", dataIndex: "Date", render: (name) => name.split("T")[0]},
+    {
+        title: "网上签约数量",
+        dataIndex: "Online_num",
+    },
+    {title: "网上签约面积", dataIndex: "Online_square"},
+    {title: "住宅签约数量", dataIndex: "House_num"},
+    {title: "住宅签约面积", dataIndex: "House_square"},
+];
+const paginationOptions = {
+    pageSize: 5
+}
 
 class HouseNumber extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            tableData: [],
+            lineData: []
         }
     }
 
@@ -18,49 +33,41 @@ class HouseNumber extends Component {
         this.getData()
     }
 
-    getData = (value = "在售") => {
-        console.log(value)
-        getHouseNumber(value).then((data) => {
-            let newData = data.results.map((item) => (
-                {
-                    name: item.name.replace("区", "") + "区",
-                    value: item.value,
-                    label: {
-                        show: false
-                    }
-                }
-            ))
-            newData.forEach((item, index) => {
-                if (item.name === "亦庄开发区") {
-                    newData.forEach((daxing) => {
-                        if (daxing.name === "大兴区") {
-                            daxing.value += item.value
-                        }
-                    })
-                    newData.splice(index, 1)
-                }
-            })
+    getData = () => {
+        getWebSignNew().then((data) => {
             this.setState({
-                data: newData
+                tableData: data.results
             })
-        }).catch(e => {
+        }).catch((e) => {
             console.log(e)
         })
-
+        getWebSignOld().then((data) => {
+            let newData = data.results.map((item) => ({
+                name: item.Date.replace(/^(\d{4})-(\d{2})-(\d{2}T\d{2}:\d{2}:\d{2})/, "$1年$2月"),
+                "数量": item.Online_num
+            }))
+            // let result = {name: "网签数据走势"}
+            //
+            // data.results.forEach((item) => {
+            //     let name = item.Date.replace(/^(\d{4})-(\d{2})-(\d{2}T\d{2}:\d{2}:\d{2})/, "$1年$2月");
+            //     let value = item.Online_num;
+            //     result[name] = value;
+            // })
+            this.setState({
+                lineData: newData
+            })
+        }).catch((e) => {
+            console.log(e)
+        })
     }
 
     render() {
         return (
             <div className="QuantityComparison">
-                <Layout
-                    style={{width: "100%", justifyContent: "flex-start", paddingLeft: "60px", background: "#ffffff"}}>
-                    <Select defaultValue={"在售"} style={{width: 120}} onChange={this.getData}>
-                        <Option value="在售">在售</Option>
-                        <Option value="成交">成交</Option>
-                    </Select>
-                </Layout>
-                <Chart chartType="column" data={this.state.data} title="行政区房屋数量对比" hoverName="数量"/>
-                <Chart chartType="earthMap" data={this.state.data} title="各行政区房屋数量分布" hoverName="数量"/>
+
+                <Chart chartType="line" data={this.state.lineData} title="网签走势"/>
+                <Table columns={columns} dataSource={this.state.tableData} size="small"
+                       pagination={paginationOptions} bordered={true} className="dataTable"/>
             </div>
         )
     }

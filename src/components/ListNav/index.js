@@ -79,15 +79,6 @@ class ListNav extends Component {
                     ],
                 },
                 {
-                    name: "楼层分析",
-                    subNav: [
-                        {
-                            name: "各楼层房屋数量",
-                            link: "/app/content/floor/number"
-                        },
-                    ],
-                },
-                {
                     name: "网签数据",
                     subNav: [
                         {

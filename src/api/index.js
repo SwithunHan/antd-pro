@@ -77,6 +77,23 @@ export async function getDynamic(params) {
     }
 }
 
+export async function getWebSignNew(params) {
+    try {
+        const res = await get(`${host}/api/Web_sign_new`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
+export async function getWebSignOld(params) {
+    try {
+        const res = await get(`${host}/api/Web_sign_old`);
+        return await res.json();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 //登陆
 export async function login(params) {
     try {
