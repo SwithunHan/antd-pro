@@ -1,27 +1,34 @@
 import React, {Component} from 'react'
 import "./style.scss"
-import {List} from 'antd';
+import {Icon, List, Pagination} from 'antd';
 import {getDynamic} from "api/index";
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-    listData.push({
-        href: 'http://ant.design',
-        title: `ant design part ${i}`,
-        description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    });
-}
-
+const IconText = ({type, text}) => (
+    <span>
+    <Icon type={type} style={{marginRight: 8}}/>
+        {text}
+  </span>
+);
 
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            total: 0,
+            data: []
+        }
     }
 
     componentDidMount() {
-        getDynamic().then(data => {
-            console.log(data.result)
+        this.getData(1)
+    }
+
+    getData = (param) => {
+        getDynamic(param).then(data => {
+            this.setState({
+                total: data.count,
+                data: data.results
+            })
         })
     }
 
@@ -31,21 +38,24 @@ class Index extends Component {
                 <List
                     itemLayout="vertical"
                     size="default"
-                    pagination={{
-                        pageSize: 5,
-                    }}
-                    dataSource={listData}
+
+                    dataSource={this.state.data}
                     renderItem={item => (
                         <List.Item
                             key={item.title}
+                            actions={[<IconText type="clock-circle" text={item.date_time}/>]}
                         >
                             <List.Item.Meta
-                                title={<a href={item.href}>{item.title}</a>}
-                                description={item.description}
+                                title={<a href={item.url}>{item.title}</a>}
+                                description={item.source}
                             />
                         </List.Item>
                     )}
                 />
+                <Pagination defaultCurrent={1} total={this.state.total} pageSize={5} onChange={(page, pageSize) => {
+                    this.getData(page)
+                }}/>
+
             </div>
         )
     }

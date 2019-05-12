@@ -70,7 +70,7 @@ export async function getSellNumber(params) {
 
 export async function getDynamic(params) {
     try {
-        const res = await get(`${host}/api/Dynamic?${params}`);
+        const res = await get(`${host}/api/Dynamic?page=${params}`);
         return await res.json();
     } catch (e) {
         console.log(e);
