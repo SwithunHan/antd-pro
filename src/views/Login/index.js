@@ -23,16 +23,20 @@ class Login extends Component {
                 if (this.props.match.path === "/login") {
                     // 登陆
                     login(values).then(data => {
-                        localStorage.setItem("token", data.token)
-                        localStorage.setItem("username", values.username)
-                        this.props.loginStore.setUsername(values.username)
-                        this.props.loginStore.setToken(data.token)
-                        history.replace("/app/content")
+                        if(data.token){
+                            localStorage.setItem("token", data.token)
+                            localStorage.setItem("username", values.username)
+                            this.props.loginStore.setUsername(values.username)
+                            this.props.loginStore.setToken(data.token)
+                            history.replace("/app/content")
+                        }else{
+                            alert("用户名密码错误")
+                        }
+
                     })
                 } else {
                     // 注册
                     registered(values).then(data => {
-                        console.log(data)
                         if (data.token) {
                             localStorage.setItem("token", data.token)
                             localStorage.setItem("username", data.username)
