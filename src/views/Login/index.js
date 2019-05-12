@@ -27,7 +27,7 @@ class Login extends Component {
                         localStorage.setItem("username", values.username)
                         this.props.loginStore.setUsername(values.username)
                         this.props.loginStore.setToken(data.token)
-                        history.replace("/content")
+                        history.replace("/app/content")
                     })
                 } else {
                     // 注册
