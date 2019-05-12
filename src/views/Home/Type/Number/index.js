@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import Chart from "../../../components/Chart";
-import {getHousetype} from "../../../api";
+import Chart from "components/Chart";
+import {getHousetype} from "api/index";
 import "./style.scss"
-import SelectArea from "../../../components/SelectArea/SelectArea";
+import SelectArea from "components/SelectArea/SelectArea";
 
 
 class HouseType extends Component {

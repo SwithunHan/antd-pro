@@ -14,49 +14,94 @@ class ListNav extends Component {
         this.state = {
             navList: [
                 {
-                    name: "数量分析",
+                    name: "区域分析",
                     subNav: [
                         {
-                            name: "各行政区小区数量",
+                            name: "二手房数量对比",
                             link: "/app/content"
                         },
                         {
-                            name: "各行政区房屋数量",
-                            link: "/app/content/number/house"
+                            name: "平均房价对比",
+                            link: "/app/content/area/average"
                         },
                         {
-                            name: "各行政区房屋成交量走势",
-                            link: "/app/content/number/clinch"
+                            name: "二手房总价对比",
+                            link: "/app/content/area/total"
                         },
-                        {
-                            name: "各路地铁周围房子数量",
-                            link: "/app/content/number/subway"
-                        }
                     ]
                 },
                 {
-                    name: "价格分析",
+                    name: "面积分析",
                     subNav: [
                         {
-                            name: "各行政区房屋平均价格",
-                            link: "/app/content/price/average"
+                            name: "面积与数量相关性",
+                            link: "/app/content/prop/number"
                         },
                         {
-                            name: "房屋沿地铁价格对比",
-                            link: "/app/content/price/subway"
+                            name: "面积与价格相关性",
+                            link: "/app/content/prop/price"
                         },
                     ],
                 },
                 {
-                    name: "房屋类型分析",
+                    name: "户型分析",
                     subNav: [
                         {
-                            name: "各行政区房屋类型",
-                            link: "/app/content/type/area"
+                            name: "各行政区房屋类型数量",
+                            link: "/app/content/type/number"
+                        },
+                    ],
+                },
+                {
+                    name: "装修情况分析",
+                    subNav: [
+                        {
+                            name: "装修情况与数量",
+                            link: "/app/content/decoration/number"
                         },
                         {
-                            name: "房屋沿地铁房屋类型",
-                            link: "/app/content/type/subway"
+                            name: "装修情况与房价",
+                            link: "/app/content/decoration/price"
+                        },
+                    ],
+                },
+                {
+                    name: "年份分析",
+                    subNav: [
+                        {
+                            name: "年份与数量",
+                            link: "/app/content/year/number"
+                        },
+                        {
+                            name: "年份与价格",
+                            link: "/app/content/year/price"
+                        },
+                    ],
+                },
+                {
+                    name: "楼层分析",
+                    subNav: [
+                        {
+                            name: "各楼层房屋数量",
+                            link: "/app/content/floor/number"
+                        },
+                    ],
+                },
+                {
+                    name: "网签数据",
+                    subNav: [
+                        {
+                            name: "网签数据显示",
+                            link: "/app/content/websign/number"
+                        },
+                    ],
+                },
+                {
+                    name: "楼市动态信息",
+                    subNav: [
+                        {
+                            name: "楼市动态",
+                            link: "/app/content/dynamic/info"
                         },
                     ],
                 },

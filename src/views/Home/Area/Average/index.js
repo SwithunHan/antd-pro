@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Chart from "../../../components/Chart";
-import {getHouseNumber} from "../../../api";
+import Chart from "components/Chart";
+import {getHouseNumber} from "api/index";
 import "./style.scss"
 import {Layout, Select} from "antd";
 

@@ -14,7 +14,8 @@ class Community extends Component {
             paginationOptions: {
                 pageSize: 5
             },
-            houseList: []
+            houseList: [],
+            loading: true
         }
     }
 
@@ -24,7 +25,8 @@ class Community extends Component {
             .then((data) => {
                 if (data.results[0]) {
                     this.setState({
-                        community: data.results[0]
+                        community: data.results[0],
+                        loading: false
                     })
                 } else {
                     history.replace("/404")
@@ -50,7 +52,7 @@ class Community extends Component {
         return (
             <Layout className="Community">
                 <h2>小区信息</h2>
-                <CommunityInfo community={this.state.community}/>
+                <CommunityInfo community={this.state.community} loading={this.state.loading}/>
                 <h2>小区内房源信息</h2>
                 <HouseTable newHouseInfo={this.state.houseList} paginationOptions={this.state.paginationOptions}/>
             </Layout>
